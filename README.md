@@ -12,6 +12,8 @@ Detect and extract distinctive features from the images. Use feature extraction 
 
 ### Scale Invariant Feature Transform(SIFT)
 
+Transforms image data into scale invariant coordinates relative to local features.
+
 - Scale-space peak selection: Potential Location for finding features.<br>
 
 The scale space of an image is a function L(x,y,σ) that is produced from the convolution of a Gaussian kernel(Blurring) at different scales with the input image. Scale space is separated into octaves and the number of octaves and scale depends on the size of the original image. So we generate several octaves of the original image. Each octave’s image size is half the previous one.
@@ -46,7 +48,20 @@ One pixel in an image is compared with its 8 neighbors as well as 9 pixels in th
 
 
 - Keypoint Localization: Accurately locating the feature keypoints
+
+The keypoints generated, some of them lie along an edge, or they don't have enough contrast making them not very useful as features.<br>
+Harris corner detector: A corner detection operator used to extract corners and infer features of an image.
+For those with low contrast, to adjust their intensities.
+A Taylor Series expansion of scale space to get a more accurate location of extrema, and if the intensity at the extrema is less than a threshold value it is rejected.
+DoG has a higher response for edges hence the need for a Hessian matrix to compute the principal curvature (2x2 matrix)
+
+
 - Orientation Assignment: Assigning orientation to keypoints
+
+With the stable keypoints, the next thing is to assign an orientation to each keypoint to make it rotation invariance.
+The scale at which the keypoint is detected is the same scale as of the blurred image.<br>
+A neighbourhood is taken around the keypoint location depending on the scale and the gradient magnitude and direction is calculated in that region.
+  
 - Keypoint descriptor: Describing the keypoints as a high dimensional vector
 - Keypoint Matching
 
