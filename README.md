@@ -36,9 +36,14 @@ Where:
 - G_σ₁: Gaussian function with standard deviation σ₁
 - G_σ₂: Gaussian function with standard deviation σ₂
 
-This form indicates that the DoG is obtained by convolving the image with the difference between two Gaussian functions.
+### Finding keypoints
+The Laplacian of Gaussian (LoG) approximations are derived from the DoG images. The LoG is obtained by calculating the Laplacian operator on the DoG images. The Laplacian operator is a filter used to enhance edges and other features in an image.
 
-The DoG helps enhance certain features by emphasizing the differences between scales in the image.
+The significance of using the DoG and LoG approximations is that they provide scale invariance, meaning they can detect and describe image features regardless of their size or scale<br>
+One pixel in an image is compared with its 8 neighbors as well as 9 pixels in the next scale and 9 pixels in previous scales. This way, a total of 26 checks are made. If it is a local extrema, it is a potential keypoint. It basically means that keypoint is best represented in that scale.
+![image](https://github.com/kaburia/3D-reconstruction/assets/88529649/a9398a9b-4f6c-460c-878d-47b45421c7b9)
+
+
 
 - Keypoint Localization: Accurately locating the feature keypoints
 - Orientation Assignment: Assigning orientation to keypoints
