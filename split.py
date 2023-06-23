@@ -1,7 +1,8 @@
 import cv2
+import os
 
 # read the video and release the frames
-def capture_and_release(video_path, output_directory):
+def capture_and_release(video_path, output_directory='frames'):
     video = cv2.VideoCapture(video_path)
     if not video.isOpened():
         print("Could not open video")
@@ -13,7 +14,8 @@ def capture_and_release(video_path, output_directory):
         if not ret:
             print("Could not read frame", i)
             break
-        cv2.imwrite(output_directory + "/frame%d.jpg" % i, frame)
+        image_path = os.path.join(output_directory, "frame%d.jpg" % i)
+        cv2.imwrite(image_path, frame)
     video.release()
     cv2.destroyAllWindows()
     
