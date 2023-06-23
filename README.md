@@ -10,10 +10,20 @@ Capture a series of images from different viewpoints. Ensure sufficient coverage
 ### 2. Feature Extraction
 Detect and extract distinctive features from the images. Use feature extraction algorithms like SIFT, SURF, or ORB to identify key points or regions.
 
-#### Scale Invariant Feature Transform(SIFT)
+### Scale Invariant Feature Transform(SIFT)
 
 - Scale-space peak selection: Potential Location for finding features.<br>
+
 The scale space of an image is a function L(x,y,σ) that is produced from the convolution of a Gaussian kernel(Blurring) at different scales with the input image. Scale space is separated into octaves and the number of octaves and scale depends on the size of the original image. So we generate several octaves of the original image. Each octave’s image size is half the previous one.
+
+#### Blurring
+
+Images are progressively blurred using the Gaussian Blur operator. The convolution of the Gaussian operator and the image.
+Gaussian Blur has a particular expression applied to each pixel
+
+#### Difference of Gaussians
+Used to find out interesting keypoints in the image
+
 
 - Keypoint Localization: Accurately locating the feature keypoints
 - Orientation Assignment: Assigning orientation to keypoints
