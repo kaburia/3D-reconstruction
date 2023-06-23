@@ -4,10 +4,10 @@ This project demonstrates a pipeline for 3D reconstruction using a series of ima
 
 ## Pipeline Steps
 
-### 1. Image Acquisition
+## 1. Image Acquisition
 Capture a series of images from different viewpoints. Ensure sufficient coverage and overlap between the images to facilitate accurate reconstruction.
 
-### 2. Feature Extraction
+## 2. Feature Extraction
 Detect and extract distinctive features from the images. Use feature extraction algorithms like SIFT, SURF, or ORB to identify key points or regions.
 
 ### Scale Invariant Feature Transform(SIFT)
@@ -16,21 +16,36 @@ Detect and extract distinctive features from the images. Use feature extraction 
 
 The scale space of an image is a function L(x,y,σ) that is produced from the convolution of a Gaussian kernel(Blurring) at different scales with the input image. Scale space is separated into octaves and the number of octaves and scale depends on the size of the original image. So we generate several octaves of the original image. Each octave’s image size is half the previous one.
 
-#### Blurring
+### Blurring
 
 Images are progressively blurred using the Gaussian Blur operator. The convolution of the Gaussian operator and the image.
 Gaussian Blur has a particular expression applied to each pixel
 
-#### Difference of Gaussians
+### Difference of Gaussians
 Used to find out interesting keypoints in the image
 
+The Difference of Gaussians (DoG) is a method used for image processing and feature detection. It involves subtracting an image convolved with a Gaussian of a wider standard deviation from the image convolved with a Gaussian of a narrower standard deviation.<be>
+The DoG function is defined as:
+
+Γ_σ₁,σ₂ = I * G_σ₁ - I * G_σ₂
+
+Where:
+- Γ_σ₁,σ₂: DoG function obtained by subtracting two convolutions
+- I: Input image
+- *: Convolution operation
+- G_σ₁: Gaussian function with standard deviation σ₁
+- G_σ₂: Gaussian function with standard deviation σ₂
+
+This form indicates that the DoG is obtained by convolving the image with the difference between two Gaussian functions.
+
+The DoG helps enhance certain features by emphasizing the differences between scales in the image.
 
 - Keypoint Localization: Accurately locating the feature keypoints
 - Orientation Assignment: Assigning orientation to keypoints
 - Keypoint descriptor: Describing the keypoints as a high dimensional vector
 - Keypoint Matching
 
-### 3. Feature Matching
+## 3. Feature Matching
 Match corresponding features across the images to establish correspondences. This step helps determine the camera poses and the 3D structure of the object.
 
 ### 4. Camera Calibration
