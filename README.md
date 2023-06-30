@@ -2,6 +2,10 @@
 
 This project demonstrates a pipeline for 3D reconstruction using a series of images. The pipeline is integrated into a Flask application that allows users to upload the images and obtain a 3D reconstruction as an OBJ file.
 
+For the setup, there are two options 
+1. Perform camera calibration using a calibration pattern or known geometry to estimate the camera parameters. This step is crucial for accurate reconstruction.
+2. Take the images and use a feature extraction algorithm such as SIFT to extract features. 
+
 ## Pipeline Steps
 
 ## 1. Image Acquisition
@@ -12,7 +16,7 @@ Detect and extract distinctive features from the images. Use feature extraction 
 
 ### Scale Invariant Feature Transform(SIFT)
 
-Transforms image data into scale invariant coordinates relative to local features.
+Transforms image data into scale-invariant coordinates relative to local features.
 
 - Scale-space peak selection: Potential Location for finding features.<br>
 
@@ -68,10 +72,12 @@ A neighbourhood is taken around the keypoint location depending on the scale and
 ## 3. Feature Matching
 Match corresponding features across the images to establish correspondences. This step helps determine the camera poses and the 3D structure of the object.
 
-### 4. Camera Calibration
-Perform camera calibration using a calibration pattern or known geometry to estimate the camera parameters. This step is crucial for accurate reconstruction. OpenCV provides functions for camera calibration.
+### RANSAC Algorithm
+The RAndom SAmple Consensus Algorithm is an iterative algorithm which will be used to estimate the parameters of a statistical model from a set of observed data which contains outliers. This is an outlier detection method
 
-### 5. Structure from Motion (SfM)
+
+
+### . Structure from Motion (SfM)
 Apply structure from motion techniques to estimate camera poses and the 3D structure of the object based on the feature correspondences. Libraries like OpenCV or VisualSFM can assist with SfM.
 
 ### 6. Dense Reconstruction
